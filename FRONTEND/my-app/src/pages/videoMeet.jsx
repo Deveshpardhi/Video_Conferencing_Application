@@ -9,7 +9,7 @@ import MicOffIcon from '@mui/icons-material/MicOff';
 import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import StopScreenShareIcon from '@mui/icons-material/StopScreenShare';
 import ChatIcon from '@mui/icons-material/Chat';
-import styles from "../styles/videoComponent.module.css";
+import styles from "../styles/VideoComponent.module.css";
 import server from '../environment';
 
 const server_url = server;
