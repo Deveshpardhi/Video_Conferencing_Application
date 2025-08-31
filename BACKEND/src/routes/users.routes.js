@@ -1,9 +1,13 @@
 import { Router } from "express";
-const routes=Router();
+import { addToHistory, getUserHistory, login, register } from "../controllers/user.controller.js";
 
-routes.route("/login");
-routes.route("/register");
-routes.route("/add_to_activity");
-routes.route("/get_all_activity");
 
-export default routes;
+
+const router = Router();
+
+router.route("/login").post(login)
+router.route("/register").post(register)
+router.route("/add_to_activity").post(addToHistory)
+router.route("/get_all_activity").get(getUserHistory)
+
+export default router;

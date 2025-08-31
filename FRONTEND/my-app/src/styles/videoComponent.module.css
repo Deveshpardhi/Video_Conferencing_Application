@@ -1,0 +1,260 @@
+/* === ORIGINAL (your baseline) === */
+.meetVideoContainer {
+    position: relative;
+    height: 100vh;
+    background: rgb(1, 4, 48);
+}
+
+.meetUserVideo {
+    position: absolute;
+    bottom: 10vh;
+    height: 20vh;
+    width: auto;
+    left: 0;
+    border-radius: 20px;
+}
+
+.buttonContainers {
+    position: absolute;
+    width: 100vw;
+    bottom: 0;
+    text-align: center;
+}
+
+.buttonContainers svg {
+    font-size: 3rem;
+}
+
+.conferenceView { 
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+}
+
+.conferenceView  video {
+    width: 40vw;
+    height: 20vh;
+    min-width: 30vw;
+    border-radius: 10px;
+}
+
+.chatRoom {
+    position: absolute;
+    height: 90vh;
+    right: 0;
+    background: white;
+    border-radius: 10px;
+    width: 30vw;
+    padding-inline: 20px;
+}
+
+.chatContainer {
+    position: relative;
+    height: 100%;
+}
+
+.chattingArea {
+    position: absolute;
+    bottom: 0;
+}
+
+/* === Small, safe UX improvements (no functionality change) === */
+.meetVideoContainer { overflow: hidden; }
+.chatRoom { 
+  z-index: 20; 
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+.meetUserVideo { 
+  z-index: 15; 
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 8px 22px rgba(0,0,0,.45);
+}
+.buttonContainers {
+  padding: 8px 0 12px;
+  background: linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.25));
+  backdrop-filter: blur(4px);
+}
+
+/* Wrap remote tiles on any screen size */
+.conferenceView {
+  flex-wrap: wrap;
+  align-content: flex-start;
+  overflow: auto;
+}
+.conferenceView > div {
+  position: relative;
+  flex: 1 1 300px;
+  max-width: 48%;
+  min-width: 260px;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0b0e14;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: transform .15s ease, box-shadow .15s ease, border-color .2s ease;
+}
+.conferenceView > div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0,0,0,.35);
+  border-color: rgba(255,255,255,0.28);
+}
+.conferenceView video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Chat sections (header, scroll area, input) */
+.chatContainer > h1 {
+  margin: 0;
+  padding: 12px 0 10px;
+  font-size: 18px;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+.chattingDisplay {
+  position: absolute;
+  top: 56px;
+  left: 20px;
+  right: 20px;
+  bottom: 68px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.chattingDisplay > div {
+  background: #f6f7fb;
+  border: 1px solid #e6e8f0;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.chattingDisplay p { margin: 0; line-height: 1.35; }
+.chattingDisplay p:first-child { 
+  font-weight: 600; 
+  color: #2a5bd7; 
+  margin-bottom: 4px; 
+}
+.chattingDisplay::-webkit-scrollbar { width: 10px; }
+.chattingDisplay::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.18);
+  border-radius: 10px;
+}
+.chattingDisplay::-webkit-scrollbar-track { background: transparent; }
+
+.chattingArea {
+  left: 20px;
+  right: 20px;
+  padding: 10px 0 12px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  border-top: 1px solid rgba(0,0,0,.08);
+  background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.65));
+}
+
+/* Make chat responsive */
+@media (max-width: 992px) {
+  .chatRoom { width: 90vw; right: 5vw; }
+}
+@media (max-width: 720px) {
+  .chatRoom { width: 94vw; right: 3vw; height: 88vh; }
+  .conferenceView > div { max-width: 100%; min-width: 100%; }
+}
+@media (max-width: 540px) {
+  .meetUserVideo { right: 10px; left: auto; bottom: 12vh; height: 16vh; }
+}
+
+/* Optional background polish */
+.meetVideoContainer {
+  background:
+    radial-gradient(1000px 600px at 80% -40%, rgba(110,168,254,0.18) 0%, rgba(110,168,254,0) 60%),
+    radial-gradient(900px 500px at 0% 140%, rgba(125,240,193,0.16) 0%, rgba(125,240,193,0) 65%),
+    rgb(1, 4, 48);
+}
+
+/* === LOBBY: NEW styles used by the updated lobby branch === */
+.lobby {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 24px;
+  background:
+    radial-gradient(900px 500px at 85% -20%, rgba(110,168,254,0.18) 0%, rgba(110,168,254,0) 60%),
+    radial-gradient(900px 500px at 0% 120%, rgba(125,240,193,0.16) 0%, rgba(125,240,193,0) 65%),
+    rgb(1, 4, 48);
+  color: #e9eef9;
+}
+
+.lobbyCard {
+  width: min(720px, 92vw);
+  display: grid;
+  grid-template-columns: 1fr 320px; /* form | preview */
+  gap: 20px;
+  padding: 20px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 14px 36px rgba(0,0,0,.35);
+  backdrop-filter: blur(6px);
+}
+
+.lobbyHeader {
+  grid-column: 1 / -1;
+  margin: 0 0 6px 0;
+  font-size: 22px;
+  letter-spacing: .3px;
+}
+
+.lobbyForm {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+
+.lobbyHint {
+  font-size: 13px;
+  color: #cfd6e6;
+  line-height: 1.35;
+}
+
+.lobbyActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.lobbyPreviewWrap {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0b0e14;
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 10px 26px rgba(0,0,0,.35);
+  min-height: 220px;
+}
+
+.lobbyPreview {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.lobbyLiveBadge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #0b0e14;
+  background: linear-gradient(135deg, #6ea8fe, #7df0c1);
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(0,0,0,.25);
+}
+
+/* Stack on small screens */
+@media (max-width: 760px) {
+  .lobbyCard { grid-template-columns: 1fr; }
+}
